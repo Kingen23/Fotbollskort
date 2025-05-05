@@ -1,0 +1,54 @@
+{
+    "players": [
+      {
+        "name": "Lionel Messi",
+        "position": "RW",
+        "team": "Inter Miami",
+        "image": "images/messi.jpg",
+        "clubLogo": "images/logos/inter-miami.png",
+        "stats": { "goals": 24, "assists": 18, "matches": 30 }
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "position": "ST",
+        "team": "Al Nassr",
+        "image": "images/ronaldo.jpg",
+        "clubLogo": "images/logos/al-nassr.png",
+        "stats": { "goals": 28, "assists": 5, "matches": 32 }
+      },
+        {
+            "name": "Neymar Jr",
+            "position": "LW",
+            "team": "Al Hilal",
+            "image": "images/neymar.jpg",
+            "clubLogo": "images/logos/al-hilal.png",
+            "stats": { "goals": 20, "assists": 10, "matches": 28 }
+        },
+        {
+            "name": "Kylian Mbappé",
+            "position": "ST",
+            "team": "Paris SG",
+            "image": "images/mbappe.jpg",
+            "clubLogo": "images/logos/paris-sg.png",
+            "stats": { "goals": 30, "assists": 12, "matches": 35 }
+        },
+        {
+            "name": "Kevin De Bruyne",
+            "position": "CM",
+            "team": "Manchester City",
+            "image": "images/de-bruyne.jpg",
+            "clubLogo": "images/logos/manchester-city.png",
+            "stats": { "goals": 10, "assists": 15, "matches": 30 }
+        },
+        {
+            "name": "Erling Haaland",
+            "position": "ST",
+            "team": "Manchester City",
+            "image": "images/haaland.jpg",
+            "clubLogo": "images/logos/manchester-city.png",
+            "stats": { "goals": 35, "assists": 5, "matches": 30 }
+        }
+      
+
+    ]
+  }
