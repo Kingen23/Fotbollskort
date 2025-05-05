@@ -71,3 +71,14 @@ body {
     margin-top: 0.15rem;
     opacity: 0.8;
   }
+  /* right below your existing .player-image rules */
+
+.club-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0.5rem auto;  /* centers it horizontally */
+    display: block;
+    border: 2px solid #fff; /* optional white border */
+  }
