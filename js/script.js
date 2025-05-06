@@ -4,15 +4,15 @@ const playerData = {
             "name": "Lionel Messi",
             "position": "RW",
             "team": "Inter Miami",
-            "image": "images/messi.jpg",
-            "clubLogo": "images/logos/inter-miami.png",
+            "image": "images/pepsi.jpg",
+            "clubLogo": "images/logos/miami.png",
             "stats": { "goals": 24, "assists": 18, "matches": 30 }
         },
         {
             "name": "Cristiano Ronaldo",
             "position": "ST",
             "team": "Al Nassr",
-            "image": "images/ronaldo.jpg",
+            "image": "images/penaldo.jpg",
             "clubLogo": "images/logos/al-nassr.png",
             "stats": { "goals": 28, "assists": 5, "matches": 32 }
         },
@@ -21,7 +21,7 @@ const playerData = {
             "position": "LW",
             "team": "Al Hilal",
             "image": "images/neymar.jpg",
-            "clubLogo": "images/logos/al-hilal.png",
+            "clubLogo": "images/logos/hilal.png",
             "stats": { "goals": 20, "assists": 10, "matches": 28 }
         },
         {
@@ -29,15 +29,15 @@ const playerData = {
             "position": "ST",
             "team": "Paris SG",
             "image": "images/mbappe.jpg",
-            "clubLogo": "images/logos/paris-sg.png",
+            "clubLogo": "images/logos/psg.png",
             "stats": { "goals": 30, "assists": 12, "matches": 35 }
         },
         {
             "name": "Kevin De Bruyne",
             "position": "CM",
             "team": "Manchester City",
-            "image": "images/de-bruyne.jpg",
-            "clubLogo": "images/logos/manchester-city.png",
+            "image": "images/kevin.jpg",
+            "clubLogo": "images/logos/city.png",
             "stats": { "goals": 10, "assists": 15, "matches": 30 }
         },
         {
@@ -45,10 +45,19 @@ const playerData = {
             "position": "ST",
             "team": "Manchester City",
             "image": "images/haaland.jpg",
-            "clubLogo": "images/logos/manchester-city.png",
+            "clubLogo": "images/logos/city.png",
             "stats": { "goals": 35, "assists": 5, "matches": 30 }
-        }
-
+        },
+        {
+            "name": "Mohamed Salah",
+            "position": "RW",
+            "team": "Liverpool",
+            "image": "images/salah.jpg",
+            "clubLogo": "images/logos/liverpool.png",
+            "stats": { "goals": 22, "assists": 9, "matches": 33 }
+          }
+      
+        
 
     ]
 };
