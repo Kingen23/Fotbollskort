@@ -152,6 +152,31 @@ body {
   transform: scale(0.98);
 }
 
+/* prettier “Open” buttons in each player area */
+.add-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.add-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
 /* two‐column layout for the areas */
 .areas {
   display: flex;
