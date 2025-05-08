@@ -219,3 +219,26 @@ body {
   font-weight: bold;
   color: #28a745;
 }
+
+/* 1) define a spin‐in keyframes */
+@keyframes spinIn {
+  0% {
+    transform: rotate3d(0,1,0,0deg) scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: rotate3d(0,1,0,180deg) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate3d(0,1,0,360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 2) when adding a card, it gets .revealing */
+.player-card.revealing .card-inner {
+  /* override default transition */
+  transition: none;
+  animation: spinIn 1s ease-out forwards;
+}

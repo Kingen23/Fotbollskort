@@ -108,9 +108,20 @@ function createCardElement(p, idx) {
 // called when “Open” clicked for area #1 or #2
 function addRandomCard(areaId) {
   const container = document.getElementById(`cards-container-${areaId}`);
-  if (container.childElementCount >= maxPerArea) return;  // limit 2
+  if (container.childElementCount >= maxPerArea) return;
+
+  // pick random player & build card
   const idx = Math.floor(Math.random() * players.length);
-  container.appendChild(createCardElement(players[idx], idx));
+  const card = createCardElement(players[idx], idx);
+
+  // 1) mark as revealing, append immediately
+  card.classList.add('revealing');
+  container.appendChild(card);
+
+  // 2) after animation duration, remove the class so card behaves normally
+  setTimeout(() => {
+    card.classList.remove('revealing');
+  }, 1000); // match the 1s in CSS
 }
 
 // wire both buttons
