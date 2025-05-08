@@ -76,6 +76,10 @@ function createCardElement(p, idx) {
   const colorClass = idx % 2 ? 'card-blue' : 'card-red';
   const card = document.createElement('div');
   card.className = `player-card ${colorClass}`;
+  // attach stats & name onto dataset
+  card.dataset.goals   = p.stats.goals;
+  card.dataset.assists = p.stats.assists;
+  card.dataset.name    = p.name;
   card.innerHTML = `
     <div class="card-inner">
       <div class="card-front">
@@ -114,4 +118,29 @@ document.querySelectorAll('.add-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     addRandomCard(btn.dataset.area);
   });
+});
+
+// replace the show‐winner logic with group‐summing per area
+document.getElementById('show-winner').addEventListener('click', () => {
+  const area1Cards = document.querySelectorAll('#cards-container-1 .player-card');
+  const area2Cards = document.querySelectorAll('#cards-container-2 .player-card');
+
+  // sum points (goals + assists) in each area
+  const sumPoints = cards => Array.from(cards).reduce((sum, c) => {
+    return sum + (+c.dataset.goals) + (+c.dataset.assists);
+  }, 0);
+
+  const score1 = sumPoints(area1Cards);
+  const score2 = sumPoints(area2Cards);
+  let resultText = '';
+
+  if (score1 > score2) {
+    resultText = `Winner: Player Area 1 (${score1} vs ${score2})`;
+  } else if (score2 > score1) {
+    resultText = `Winner: Player Area 2 (${score2} vs ${score1})`;
+  } else {
+    resultText = `Tie: ${score1} vs ${score2}`;
+  }
+
+  document.getElementById('winner-text').textContent = resultText;
 });
