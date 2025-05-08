@@ -151,3 +151,25 @@ body {
 #random-btn:active {
   transform: scale(0.98);
 }
+
+/* two‐column layout for the areas */
+.areas {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* each area stacks title / container / button */
+.player-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* limit each area’s cards to max‐width as before */
+#cards-container-1,
+#cards-container-2 {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

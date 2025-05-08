@@ -68,12 +68,11 @@ document.querySelectorAll('.player-card').forEach(card => {
     });
 });
 
-const players = playerData.players;      // all players
-const container = document.getElementById('cards-container');
-const btn = document.getElementById('random-btn');
+const players = playerData.players;  // your array of players
+const maxPerArea = 2;
 
-function renderPlayer(p, idx) {
-  container.innerHTML = '';              // clear any existing card
+// helper: build a card element (front + back + flip handler)
+function createCardElement(p, idx) {
   const colorClass = idx % 2 ? 'card-blue' : 'card-red';
   const card = document.createElement('div');
   card.className = `player-card ${colorClass}`;
@@ -96,22 +95,23 @@ function renderPlayer(p, idx) {
         </div>
       </div>
     </div>`;
-  card.querySelector('.player-card');  // ensure layout
   // flip on click
   card.querySelector('.card-inner')
-      .addEventListener('click', e => {
-        e.currentTarget.classList.toggle('is-flipped');
-      });
-  container.appendChild(card);
+      .addEventListener('click', e => e.currentTarget.classList.toggle('is-flipped'));
+  return card;
 }
 
-function showRandom() {
+// called when “Open” clicked for area #1 or #2
+function addRandomCard(areaId) {
+  const container = document.getElementById(`cards-container-${areaId}`);
+  if (container.childElementCount >= maxPerArea) return;  // limit 2
   const idx = Math.floor(Math.random() * players.length);
-  renderPlayer(players[idx], idx);
+  container.appendChild(createCardElement(players[idx], idx));
 }
 
-// wire up button
-btn.addEventListener('click', showRandom);
-
-// show one on load
-showRandom();
+// wire both buttons
+document.querySelectorAll('.add-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    addRandomCard(btn.dataset.area);
+  });
+});
