@@ -242,3 +242,25 @@ body {
   transition: none;
   animation: spinIn 1s ease-out forwards;
 }
+
+/* restart button styling */
+.restart-btn {
+  margin-top: 0.5rem;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.restart-btn:hover {
+  background-color: #c82333;
+}
+
+.restart-btn:active {
+  transform: scale(0.97);
+}

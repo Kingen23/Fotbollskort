@@ -155,3 +155,12 @@ document.getElementById('show-winner').addEventListener('click', () => {
 
   document.getElementById('winner-text').textContent = resultText;
 });
+
+// wire up Restart button
+document.getElementById('restart-btn').addEventListener('click', () => {
+  // clear both areas
+  document.getElementById('cards-container-1').innerHTML = '';
+  document.getElementById('cards-container-2').innerHTML = '';
+  // clear winner text
+  document.getElementById('winner-text').textContent = '';
+});
