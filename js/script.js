@@ -107,10 +107,16 @@ function createCardElement(p, idx) {
 }
 
 function updateWinnerButton() {
+  const btn = document.getElementById('show-winner');
   const a1 = document.getElementById('cards-container-1').childElementCount;
   const a2 = document.getElementById('cards-container-2').childElementCount;
   if (a1 >= maxPerArea && a2 >= maxPerArea) {
-    document.getElementById('show-winner').style.display = 'inline-block';
+    if (btn.style.display !== 'inline-block') {
+      btn.style.display = 'inline-block';
+      btn.classList.add('bounce');
+      // remove bounce class after animation completes
+      setTimeout(() => btn.classList.remove('bounce'), 800);
+    }
   }
 }
 
