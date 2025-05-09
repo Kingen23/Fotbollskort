@@ -19,17 +19,17 @@ const playerData = {
         {
             "name": "Neymar Jr",
             "position": "LW",
-            "team": "Al Hilal",
+            "team": "Santos",
             "image": "images/neymar.jpg",
-            "clubLogo": "images/logos/hilal.png",
+            "clubLogo": "images/logos/santos.png",
             "stats": { "goals": 20, "assists": 10, "matches": 28 }
         },
         {
             "name": "Kylian Mbappé",
             "position": "ST",
-            "team": "Paris SG",
+            "team": "Real Madrid",
             "image": "images/mbappe.jpg",
-            "clubLogo": "images/logos/psg.png",
+            "clubLogo": "images/logos/real madrid.jpg",
             "stats": { "goals": 30, "assists": 12, "matches": 35 }
         },
         {
