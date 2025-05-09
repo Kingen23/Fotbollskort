@@ -200,6 +200,14 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Ensure each player‐area’s cards sit side by side and wrap nicely */
+.player-area .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem; /* small gap between cards */
+}
+
 /* style winner button and text */
 .winner-btn {
   margin-top: 1rem;
@@ -329,17 +337,21 @@ body {
   .stats small {
     font-size: 0.6rem;
   }
-  .player-card {
-    width: 90vw;
-    max-width: 280px;
+  .player-area .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
-  /* buttons fill the available width */
-  .add-btn,
-  #show-winner,
-  .restart-btn {
-    width: 90vw;
-    max-width: 280px;
-    padding: 0.75rem;
-    font-size: 1rem;
+  .player-area .cards-container .player-card {
+    flex: 0 0 48%;      /* two cards per row */
+    max-width: 48%;
+    height: 320px;      /* keep height consistent */
+  }
+  /* tighten up margins/paddings if you still see overflow */
+  body, .player-area, .cards-container {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
   }
 }
