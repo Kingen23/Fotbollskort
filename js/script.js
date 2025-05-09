@@ -174,4 +174,6 @@ document.getElementById('restart-btn').addEventListener('click', () => {
   document.getElementById('cards-container-2').innerHTML = '';
   // clear winner text
   document.getElementById('winner-text').textContent = '';
+  // hide the Show Winner button again
+  document.getElementById('show-winner').style.display = 'none';
 });
