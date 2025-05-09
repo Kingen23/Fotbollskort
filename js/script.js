@@ -155,33 +155,42 @@ document.getElementById('show-winner').addEventListener('click', () => {
   const area1Cards = document.querySelectorAll('#cards-container-1 .player-card');
   const area2Cards = document.querySelectorAll('#cards-container-2 .player-card');
 
-  // sum points (goals + assists) in each area
-  const sumPoints = cards => Array.from(cards).reduce((sum, c) => {
-    return sum + (+c.dataset.goals) + (+c.dataset.assists);
-  }, 0);
+  const sumPoints = cards => Array.from(cards).reduce((sum, c) =>
+    sum + (+c.dataset.goals) + (+c.dataset.assists), 0
+  );
 
   const score1 = sumPoints(area1Cards);
   const score2 = sumPoints(area2Cards);
   let resultText = '';
+  let winnerContainerId = '';
 
   if (score1 > score2) {
     resultText = `Winner: Player Area 1 (${score1} vs ${score2})`;
+    winnerContainerId = 'cards-container-1';
   } else if (score2 > score1) {
     resultText = `Winner: Player Area 2 (${score2} vs ${score1})`;
+    winnerContainerId = 'cards-container-2';
   } else {
     resultText = `Tie: ${score1} vs ${score2}`;
   }
 
   document.getElementById('winner-text').textContent = resultText;
 
-  // 1) fire confetti
-  confetti({ 
-    particleCount: 150, 
-    spread: 60, 
-    origin: { y: 0.6 } 
-  });
-  
-  // 2) spawn some balloons
+  // fire confetti on the winning area only
+  if (winnerContainerId) {
+    const container = document.getElementById(winnerContainerId);
+    const rect = container.getBoundingClientRect();
+    const originX = (rect.left + rect.width / 2) / window.innerWidth;
+    const originY = (rect.top + rect.height / 2) / window.innerHeight;
+
+    confetti({
+      particleCount: 150,
+      spread: 60,
+      origin: { x: originX, y: originY }
+    });
+  }
+
+  // spawn balloons (optional)
   const colors = ['🎈','🎉','🎊','🥳'];
   for (let i = 0; i < 10; i++) {
     const balloon = document.createElement('div');
@@ -190,7 +199,7 @@ document.getElementById('show-winner').addEventListener('click', () => {
     balloon.style.left = `${Math.random() * 100}%`;
     balloon.style.bottom = '0';
     balloon.style.fontSize = '2rem';
-    balloon.style.animation = `float-up ${Math.random() * 2 + 3}s ease-in infinite`;
+    balloon.style.animation = `float-up ${Math.random() * 2 + 3}s ease-in forwards`;
     document.body.appendChild(balloon);
     setTimeout(() => balloon.remove(), 5000);
   }
