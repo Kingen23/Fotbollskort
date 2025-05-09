@@ -68,7 +68,8 @@ document.querySelectorAll('.player-card').forEach(card => {
     });
 });
 
-const players = playerData.players;  // your array of players
+const players = playerData.players;      // full deck
+let availablePlayers = [...players];     // will remove dealt cards
 const maxPerArea = 2;
 
 // helper: build a card element (front + back + flip handler)
@@ -118,20 +119,20 @@ function addRandomCard(areaId) {
   const container = document.getElementById(`cards-container-${areaId}`);
   if (container.childElementCount >= maxPerArea) return;
 
-  // pick random player & build card
-  const idx = Math.floor(Math.random() * players.length);
-  const card = createCardElement(players[idx], idx);
+  // nothing left
+  if (availablePlayers.length === 0) return;
 
-  // 1) mark as revealing, append immediately
+  // pick and remove from availablePlayers to avoid duplicates
+  const rnd = Math.floor(Math.random() * availablePlayers.length);
+  const p = availablePlayers.splice(rnd, 1)[0];
+  // find original index for colorClass
+  const idx = players.indexOf(p);
+
+  const card = createCardElement(p, idx);
   card.classList.add('revealing');
   container.appendChild(card);
+  setTimeout(() => card.classList.remove('revealing'), 1000);
 
-  // 2) after animation duration, remove the class so card behaves normally
-  setTimeout(() => {
-    card.classList.remove('revealing');
-  }, 1000); // match the 1s in CSS
-
-  // new: check if we can now show the winner button
   updateWinnerButton();
 }
 
@@ -169,11 +170,12 @@ document.getElementById('show-winner').addEventListener('click', () => {
 
 // wire up Restart button
 document.getElementById('restart-btn').addEventListener('click', () => {
-  // clear both areas
+  // reset deck
+  availablePlayers = [...players];
+  // clear areas
   document.getElementById('cards-container-1').innerHTML = '';
   document.getElementById('cards-container-2').innerHTML = '';
-  // clear winner text
+  // hide winner UI
   document.getElementById('winner-text').textContent = '';
-  // hide the Show Winner button again
   document.getElementById('show-winner').style.display = 'none';
 });
