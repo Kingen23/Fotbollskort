@@ -105,6 +105,14 @@ function createCardElement(p, idx) {
   return card;
 }
 
+function updateWinnerButton() {
+  const a1 = document.getElementById('cards-container-1').childElementCount;
+  const a2 = document.getElementById('cards-container-2').childElementCount;
+  if (a1 >= maxPerArea && a2 >= maxPerArea) {
+    document.getElementById('show-winner').style.display = 'inline-block';
+  }
+}
+
 // called when “Open” clicked for area #1 or #2
 function addRandomCard(areaId) {
   const container = document.getElementById(`cards-container-${areaId}`);
@@ -122,6 +130,9 @@ function addRandomCard(areaId) {
   setTimeout(() => {
     card.classList.remove('revealing');
   }, 1000); // match the 1s in CSS
+
+  // new: check if we can now show the winner button
+  updateWinnerButton();
 }
 
 // wire both buttons

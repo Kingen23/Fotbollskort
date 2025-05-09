@@ -220,6 +220,23 @@ body {
   color: #28a745;
 }
 
+/* hide until both areas full */
+#show-winner {
+  display: none;
+  /* existing styles below… */
+  margin-top: 1rem;
+  background: #ffc107;
+  color: #212529;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#show-winner:hover {
+  background: #e0a800;
+}
+
 /* 1) define a spin‐in keyframes */
 @keyframes spinIn {
   0% {
