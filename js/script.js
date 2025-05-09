@@ -173,6 +173,27 @@ document.getElementById('show-winner').addEventListener('click', () => {
   }
 
   document.getElementById('winner-text').textContent = resultText;
+
+  // 1) fire confetti
+  confetti({ 
+    particleCount: 150, 
+    spread: 60, 
+    origin: { y: 0.6 } 
+  });
+  
+  // 2) spawn some balloons
+  const colors = ['🎈','🎉','🎊','🥳'];
+  for (let i = 0; i < 10; i++) {
+    const balloon = document.createElement('div');
+    balloon.textContent = colors[Math.floor(Math.random() * colors.length)];
+    balloon.style.position = 'absolute';
+    balloon.style.left = `${Math.random() * 100}%`;
+    balloon.style.bottom = '0';
+    balloon.style.fontSize = '2rem';
+    balloon.style.animation = `float-up ${Math.random() * 2 + 3}s ease-in infinite`;
+    document.body.appendChild(balloon);
+    setTimeout(() => balloon.remove(), 5000);
+  }
 });
 
 // wire up Restart button
