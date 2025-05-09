@@ -19,6 +19,7 @@ body {
   /* card base */
   .player-card {
     width: 240px;
+    height: 380px;       /* ← added to match .card-inner default */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -91,8 +92,8 @@ body {
 /* inner wrapper that will flip */
 .card-inner {
   position: relative;
-  width: 240px;
-  height: 380px;
+  width: 100%;         /* changed from fixed px */
+  height: 100%;        /* changed from fixed px */
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -299,6 +300,34 @@ body {
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .player-card {
+    width: 80vw;         /* shrink card width */
+    max-width: 200px;    /* cap at 200px */
+    height: 320px;       /* match your reduced inner height */
+  }
+  .card-inner {
+    width: 100%;
+    height: 100%;
+  }
+  .player-image {
+    height: 140px;       /* smaller image */
+  }
+  .player-info {
+    padding: 0.75rem;    /* tighter padding */
+  }
+  .player-name {
+    font-size: 1.2rem;   /* smaller heading */
+  }
+  .player-position,
+  .player-team {
+    font-size: 0.8rem;
+  }
+  .stats span {
+    font-size: 1rem;
+  }
+  .stats small {
+    font-size: 0.6rem;
   }
   .player-card {
     width: 90vw;
