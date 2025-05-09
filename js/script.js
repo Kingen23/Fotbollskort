@@ -129,11 +129,18 @@ function addRandomCard(areaId) {
   const idx = players.indexOf(p);
 
   const card = createCardElement(p, idx);
-  card.classList.add('revealing');
   container.appendChild(card);
+  card.classList.add('revealing');
   setTimeout(() => card.classList.remove('revealing'), 1000);
 
   updateWinnerButton();
+
+  // hide this area's Open button once it has 2 cards
+  if (container.childElementCount >= maxPerArea) {
+    document
+      .querySelector(`.add-btn[data-area="${areaId}"]`)
+      .style.display = 'none';
+  }
 }
 
 // wire both buttons
@@ -170,12 +177,16 @@ document.getElementById('show-winner').addEventListener('click', () => {
 
 // wire up Restart button
 document.getElementById('restart-btn').addEventListener('click', () => {
-  // reset deck
+  // reset deck & clear cards…
   availablePlayers = [...players];
-  // clear areas
   document.getElementById('cards-container-1').innerHTML = '';
   document.getElementById('cards-container-2').innerHTML = '';
-  // hide winner UI
+
+  // hide winner…
   document.getElementById('winner-text').textContent = '';
   document.getElementById('show-winner').style.display = 'none';
+
+  // re-show both Open buttons
+  document.querySelectorAll('.add-btn')
+    .forEach(btn => btn.style.display = 'inline-block');
 });
