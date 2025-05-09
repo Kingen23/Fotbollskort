@@ -71,6 +71,7 @@ document.querySelectorAll('.player-card').forEach(card => {
 const players = playerData.players;      // full deck
 let availablePlayers = [...players];     // will remove dealt cards
 const maxPerArea = 2;
+const replaceUsed = { 1: false, 2: false };
 
 // helper: build a card element (front + back + flip handler)
 function createCardElement(p, idx) {
@@ -141,11 +142,16 @@ function addRandomCard(areaId) {
 
   updateWinnerButton();
 
-  // hide this area's Open button once it has 2 cards
-  if (container.childElementCount >= maxPerArea) {
-    document
-      .querySelector(`.add-btn[data-area="${areaId}"]`)
-      .style.display = 'none';
+  // only after the *second* card is in place...
+  if (container.childElementCount === maxPerArea) {
+    // hide Open
+    document.querySelector(`.add-btn[data-area="${areaId}"]`)
+            .style.display = 'none';
+    // show Replace once
+    if (!replaceUsed[areaId]) {
+      document.querySelector(`.replace-btn[data-area="${areaId}"]`)
+              .style.display = 'inline-block';
+    }
   }
 }
 
@@ -153,6 +159,42 @@ function addRandomCard(areaId) {
 document.querySelectorAll('.add-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     addRandomCard(btn.dataset.area);
+  });
+});
+
+// wire replace buttons
+document.querySelectorAll('.replace-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const areaId = btn.dataset.area;
+    if (replaceUsed[areaId]) return;
+
+    const container = document.getElementById(`cards-container-${areaId}`);
+    const cards = container.querySelectorAll('.player-card');
+    // pick a random existing card to replace
+    const removeIdx = Math.floor(Math.random() * cards.length);
+    const oldCard = cards[removeIdx];
+    const oldName = oldCard.dataset.name;
+    // return old player to deck
+    const oldPlayer = players.find(p => p.name === oldName);
+    availablePlayers.push(oldPlayer);
+
+    // remove old card
+    container.removeChild(oldCard);
+
+    // draw new card
+    if (availablePlayers.length) {
+      const rnd = Math.floor(Math.random() * availablePlayers.length);
+      const newP = availablePlayers.splice(rnd, 1)[0];
+      const idx = players.indexOf(newP);
+      const newCard = createCardElement(newP, idx);
+      newCard.classList.add('revealing');
+      container.appendChild(newCard);
+      setTimeout(() => newCard.classList.remove('revealing'), 1000);
+    }
+
+    // disable Replace button
+    btn.style.display = 'none';
+    replaceUsed[areaId] = true;
   });
 });
 
@@ -215,6 +257,7 @@ document.getElementById('show-winner').addEventListener('click', () => {
 document.getElementById('restart-btn').addEventListener('click', () => {
   // reset deck & clear cards…
   availablePlayers = [...players];
+  replaceUsed[1] = replaceUsed[2] = false;
   document.getElementById('cards-container-1').innerHTML = '';
   document.getElementById('cards-container-2').innerHTML = '';
 
@@ -225,4 +268,6 @@ document.getElementById('restart-btn').addEventListener('click', () => {
   // re-show both Open buttons
   document.querySelectorAll('.add-btn')
     .forEach(btn => btn.style.display = 'inline-block');
+  document.querySelectorAll('.replace-btn')
+    .forEach(btn => btn.style.display = 'none');
 });

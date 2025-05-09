@@ -178,6 +178,40 @@ body {
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
+/* style the Replace button like the Add button, but in a different color */
+.replace-btn {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.replace-btn:hover {
+  background-color: #138496;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.replace-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* optional: target the icon specifically */
+.replace-icon {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
 /* two‐column layout for the areas */
 .areas {
   display: flex;
